@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@layer base {
+  @font-face {
+      font-family: 'Metropolis';
+      src: url('https://fonts.cdnfonts.com/s/14352/Metropolis-Regular.woff') format('woff');
+      font-weight: 400;
+  }
+  @font-face {
+      font-family: 'Metropolis';
+      src: url('https://fonts.cdnfonts.com/s/14352/Metropolis-SemiBold.woff') format('woff');
+      font-weight: 600;
+  }
+  @font-face {
+      font-family: 'Metropolis';
+      src: url('https://fonts.cdnfonts.com/s/14352/Metropolis-Bold.woff') format('woff');
+      font-weight: 700;
+  }
+}
+
+@theme {
+  --color-background: #ffffff;
+  --color-on-background: #0f172a;
+  --color-surface: #ffffff;
+  --color-on-surface: #1e293b;
+  --color-surface-variant: #f8fafc;
+  --color-on-surface-variant: #64748b;
+  --color-surface-container: #f1f5f9;
+  --color-surface-container-low: #f8fafc;
+  --color-surface-container-high: #ffffff;
+  --color-surface-container-highest: #e2e8f0;
+  --color-primary: #0284c7;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #e0f2fe;
+  --color-on-primary-container: #0369a1;
+  --color-secondary: #0891b2;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #cffafe;
+  --color-on-secondary-container: #164e63;
+  --color-tertiary: #10b981;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #d1fae5;
+  --color-on-tertiary-container: #047857;
+  --color-error: #ef4444;
+  --color-on-error: #ffffff;
+  --color-error-container: #fee2e2;
+  --color-on-error-container: #b91c1c;
+  --color-outline: #cbd5e1;
+  --color-outline-variant: #e2e8f0;
+  --color-surface-bright: #ffffff;
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-floating: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Fondos amigables */
+.friendly-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.map-bg {
+  background-color: #f1f5f9;
+  background-image: 
+      radial-gradient(circle at 50% 50%, rgba(2, 132, 199, 0.05) 0%, transparent 50%),
+      linear-gradient(rgba(203, 213, 225, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(203, 213, 225, 0.4) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-position: center center, center center, center center;
+}
+
+/* Animaciones suaves */
+.pulse-marker {
+  animation: pulse-soft 2s infinite;
+}
+
+@keyframes pulse-soft {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.map-pin {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.map-pin:hover {
+  transform: scale(1.1) translateY(-4px);
+  z-index: 10;
+}
