@@ -313,7 +313,7 @@ const DashboardImpacto = () => {
                     const h = day.co2 / maxCo2;
                     return (
                       <div key={i} className="flex-1 flex flex-col items-center justify-end h-full group/bar relative">
-                        <div className="absolute -top-6 opacity-0 group-hover/bar:opacity-100 transition-opacity bg-tertiary text-white text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap z-20">
+                        <div className="absolute -top-6 opacity-100 md:opacity-0 md:group-hover/bar:opacity-100 transition-opacity bg-tertiary text-white text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap z-20 shadow-sm">
                           {day.co2.toFixed(1)} kg
                         </div>
                         <div className="w-full bg-surface-container rounded-t-md hover:bg-tertiary/30 transition-colors" style={{ height: `${Math.max(h * 100, 5)}%` }}></div>
@@ -347,7 +347,7 @@ const DashboardImpacto = () => {
                     const h = day.revenue / maxRev;
                     return (
                       <div key={i} className="flex-1 flex flex-col items-center justify-end h-full group/bar relative">
-                        <div className="absolute -top-6 opacity-0 group-hover/bar:opacity-100 transition-opacity bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap z-20">
+                        <div className="absolute -top-6 opacity-100 md:opacity-0 md:group-hover/bar:opacity-100 transition-opacity bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap z-20 shadow-sm">
                           {currency}{day.revenue.toFixed(0)}
                         </div>
                         <div className="w-full bg-surface-container rounded-t-md hover:bg-primary/30 transition-colors" style={{ height: `${Math.max(h * 100, 5)}%` }}></div>
@@ -497,23 +497,35 @@ const DashboardImpacto = () => {
           </motion.div>
         </motion.div>
       </main>
-
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 bg-white border-t border-outline-variant/30 pb-safe shadow-[0_-8px_20px_rgba(0,0,0,0.05)]">
-        <div className="flex justify-around items-center h-16">
+        <div className="flex justify-around items-center h-16 px-2">
           <Link to="/mapa" className="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors">
             <span className="material-symbols-outlined text-[24px]">map</span>
             <span className="text-[10px] font-semibold mt-1">Mapa</span>
           </Link>
-          <a href="#" className="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors">
-            <span className="material-symbols-outlined text-[24px]">ev_station</span>
-            <span className="text-[10px] font-semibold mt-1">Carga</span>
-          </a>
           <Link to="/dashboard" className="flex flex-col items-center justify-center w-full h-full text-primary relative">
             <div className="absolute -top-3 w-12 h-1 bg-primary rounded-b-full"></div>
             <span className="material-symbols-outlined text-[24px]" style={{fontVariationSettings: "'FILL' 1"}}>analytics</span>
             <span className="text-[10px] font-bold mt-1">Resumen</span>
           </Link>
+          {(isAdmin || isOperator) ? (
+            <Link to="/pos" className="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors">
+              <span className="material-symbols-outlined text-[24px]">point_of_sale</span>
+              <span className="text-[10px] font-semibold mt-1">POS</span>
+            </Link>
+          ) : (
+            <a href="#" className="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors">
+              <span className="material-symbols-outlined text-[24px]">ev_station</span>
+              <span className="text-[10px] font-semibold mt-1">Carga</span>
+            </a>
+          )}
+          {isAdmin && (
+            <Link to="/admin" className="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors">
+              <span className="material-symbols-outlined text-[24px]">admin_panel_settings</span>
+              <span className="text-[10px] font-semibold mt-1">Admin</span>
+            </Link>
+          )}
         </div>
       </nav>
     </div>
