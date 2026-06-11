@@ -61,9 +61,15 @@ const AdminLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Header */}
-        <header className="h-16 bg-white border-b border-outline-variant/30 flex items-center px-4 md:hidden">
-          <span className="material-symbols-outlined text-primary mr-2">shield_person</span>
-          <h1 className="font-bold text-on-background">Admin Console</h1>
+        <header className="h-16 bg-white border-b border-outline-variant/30 flex justify-between items-center px-4 md:hidden">
+          <div className="flex items-center">
+            <span className="material-symbols-outlined text-primary mr-2">shield_person</span>
+            <h1 className="font-bold text-on-background">Admin Console</h1>
+          </div>
+          <Link to="/dashboard" className="flex items-center gap-1 text-[11px] font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors whitespace-nowrap">
+            <span className="material-symbols-outlined text-[14px]">arrow_back</span>
+            Volver
+          </Link>
         </header>
 
         {/* Dynamic Page Content */}
