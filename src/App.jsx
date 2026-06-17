@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { SettingsProvider } from './context/SettingsContext'
 import Onboarding from './components/Onboarding'
@@ -21,7 +21,7 @@ function App() {
   return (
     <AuthProvider>
       <SettingsProvider>
-        <BrowserRouter>
+        <HashRouter>
         <Routes>
           {/* Public / User Routes */}
           <Route path="/" element={<Navigate to="/onboarding" replace />} />
@@ -43,7 +43,7 @@ function App() {
             <Route path="settings" element={<AdminSettings />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
       </SettingsProvider>
     </AuthProvider>
   )
